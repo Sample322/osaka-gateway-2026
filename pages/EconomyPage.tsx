@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, ChevronDown, TrendingUp, PieChart, Activity, Users, Ticket, Home, Building, Hammer, Armchair, DollarSign } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import eventModel from '../assets/images/eventModel.jpg'
+import akiyaProject from '../assets/images/akiyaProject.jpg'
+import premiumRent from '../assets/images/premiumRent.jpeg'
 const AccordionItem: React.FC<{ title: string; cost?: string; children: React.ReactNode }> = ({ title, cost, children }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -212,7 +214,7 @@ export const EconomyPage: React.FC = () => {
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col">
             <div className="relative h-48">
                 <img 
-                    src="https://images.unsplash.com/photo-1598226063462-c38a2278c251?auto=format&fit=crop&w=2070&q=80" 
+                    src={akiyaProject} 
                     alt="Traditional Kyoto House" 
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover" 
@@ -291,14 +293,14 @@ export const EconomyPage: React.FC = () => {
           <div 
             className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col relative"
             style={{
-                backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url('https://images.unsplash.com/photo-1522771753035-1a5b6519b6ca?auto=format&fit=crop&w=2070&q=80')`,
+                backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url({premiumRent})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
             }}
           >
             <div className="relative h-48">
                 <img 
-                    src="https://images.unsplash.com/photo-1522771753035-1a5b6519b6ca?auto=format&fit=crop&w=2070&q=80" 
+                    src={premiumRent} 
                     alt="Modern Osaka Interior" 
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover" 
