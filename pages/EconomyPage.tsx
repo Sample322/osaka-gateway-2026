@@ -42,12 +42,17 @@ const CalculatorInput: React.FC<{
         <div className="relative">
             <input 
                 type="number" 
-                value={value}
-                onChange={(e) => onChange(Number(e.target.value))}
-                className="w-full pl-3 pr-8 py-2 border border-gray-300 rounded text-sm font-mono focus:ring-2 focus:ring-opacity-50 focus:outline-none transition-shadow"
+                // Превращаем в строку, чтобы не было проблем с отображением 0
+                value={value === 0 ? '' : value}
+                onChange={(e) => {
+                    const val = e.target.value;
+                    // Если строка пустая, ставим 0, иначе парсим число
+                    onChange(val === '' ? 0 : parseFloat(val));
+                }}
+                className="w-full pl-3 pr-8 py-2 border border-gray-300 rounded text-sm font-mono focus:ring-2 focus:ring-opacity-50 focus:outline-none transition-shadow bg-white/90"
                 style={{ borderColor: 'inherit' }}
             />
-            <span className="absolute right-3 top-2 text-gray-400 text-xs">₽</span>
+            <span className="absolute right-3 top-2 text-gray-500 text-xs">₽</span>
         </div>
     </div>
 );
@@ -70,27 +75,41 @@ export const EconomyPage: React.FC = () => {
   const akiyaNet = akiyaMonthlyRev - akiyaMonthlyExp;
   const akiyaROI = Math.ceil(akiyaInvest / akiyaNet) + 7; // +7 months renovation time
 
-  // 2. Premium Rent
+// 2. Premium Rent
   const [premDeposit, setPremDeposit] = useState(1300000);
   const [premReno, setPremReno] = useState(1500000);
   const [premFurn, setPremFurn] = useState(1200000);
+  
+  // ОБНОВЛЕНО: Ставим дефолтные значения как в вашей старой формуле (250к + 80к)
+  const [premiumRentPrice, setPremiumRentPrice] = useState(250000); 
+  const [premiumServiceCost, setPremiumServiceCost] = useState(80000); 
 
   const premFixed = 400000; // License
   const premInvest = premDeposit + premReno + premFurn + premFixed;
   const premMonthlyRev = 1300000;
-  const premMonthlyExp = 330000; // 250k rent + 80k service
+  
+  // ИСПРАВЛЕНО: Теперь считаем динамически
+  const premMonthlyExp = premiumRentPrice + premiumServiceCost; 
+  
   const premNet = premMonthlyRev - premMonthlyExp;
   const premROI = Math.ceil(premInvest / premNet);
 
-  // 3. Budget Cluster
+// 3. Budget Cluster
   const [budgDeposit, setBudgDeposit] = useState(800000);
   const [budgReno, setBudgReno] = useState(1200000);
   const [budgFurn, setBudgFurn] = useState(800000);
+  
+  // ОБНОВЛЕНО: Ставим дефолтные значения как в вашей старой формуле (130к + 50к)
+  const [budgetRentPrice, setBudgetRentPrice] = useState(130000);
+  const [budgetServiceCost, setBudgetServiceCost] = useState(50000);
 
   const budgFixed = 200000; // Marketing
   const budgInvest = budgDeposit + budgReno + budgFurn + budgFixed;
   const budgMonthlyRev = 1150000;
-  const budgMonthlyExp = 180000; // 130k rent + 50k service
+  
+  // ИСПРАВЛЕНО: Теперь считаем динамически
+  const budgMonthlyExp = budgetRentPrice + budgetServiceCost;
+  
   const budgNet = budgMonthlyRev - budgMonthlyExp;
   const budgROI = Math.ceil(budgInvest / budgNet);
 
@@ -268,8 +287,15 @@ export const EconomyPage: React.FC = () => {
             </div>
           </div>
 
-          {/* 2. Premium Rent */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+{/* 2. Premium Rent */}
+          <div 
+            className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col relative"
+            style={{
+                backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url('https://images.unsplash.com/photo-1522771753035-1a5b6519b6ca?auto=format&fit=crop&w=2070&q=80')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+            }}
+          >
             <div className="relative h-48">
                 <img 
                     src="https://images.unsplash.com/photo-1522771753035-1a5b6519b6ca?auto=format&fit=crop&w=2070&q=80" 
@@ -288,7 +314,7 @@ export const EconomyPage: React.FC = () => {
                 </div>
             </div>
 
-             <div className="bg-blue-50 p-6 border-b border-gray-200">
+             <div className="bg-blue-50/80 p-6 border-b border-gray-200 backdrop-blur-sm">
                 <h4 className="text-xs font-bold text-blue-800 uppercase mb-4 flex items-center">
                     <DollarSign className="w-3 h-3 mr-1" /> Калькулятор запуска
                 </h4>
@@ -314,6 +340,22 @@ export const EconomyPage: React.FC = () => {
                         colorClass="text-blue-800"
                         icon={<Armchair className="w-3 h-3"/>}
                     />
+                     {/* НОВЫЕ ПОЛЯ */}
+                     <CalculatorInput 
+                        label="Аренда (Расходы)" 
+                        value={premiumRentPrice} 
+                        onChange={setPremiumRentPrice} 
+                        colorClass="text-blue-800"
+                        icon={<Home className="w-3 h-3"/>}
+                    />
+                    <CalculatorInput 
+                        label="Сервис/Клининг" 
+                        value={premiumServiceCost} 
+                        onChange={setPremiumServiceCost} 
+                        colorClass="text-blue-800"
+                        icon={<Activity className="w-3 h-3"/>}
+                    />
+
                      <div className="flex flex-col justify-end mb-3">
                          <div className="text-xs text-gray-500 mb-1">Total Capex</div>
                          <div className="text-lg font-bold text-red-600 font-mono">-{fmt(premInvest)} ₽</div>
@@ -321,11 +363,11 @@ export const EconomyPage: React.FC = () => {
                 </div>
             </div>
 
-            <div className="divide-y divide-gray-100">
+            <div className="divide-y divide-gray-100 bg-white/80 backdrop-blur-sm">
               <AccordionItem title="Детализация расходов" cost={`${fmt(premFixed)} ₽ (License)`}>
                  <p className="text-sm text-gray-500">Административные сборы, оформление Minpaku лицензии, юрлицо.</p>
               </AccordionItem>
-               <div className="p-4 bg-gray-50">
+               <div className="p-4 bg-gray-50/90">
                 <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Операционные показатели</h4>
                 <div className="flex justify-between text-sm mb-1">
                   <span className="text-gray-600">Выручка (Namba)</span>
@@ -342,9 +384,15 @@ export const EconomyPage: React.FC = () => {
               </div>
             </div>
           </div>
-
           {/* 3. Budget Cluster */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+          <div 
+            className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col relative"
+            style={{
+                backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url('https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?auto=format&fit=crop&w=2070&q=80')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+            }}
+          >
             <div className="relative h-48">
                 <img 
                     src="https://images.unsplash.com/photo-1505330622279-bf7d7fc918f4?auto=format&fit=crop&w=2070&q=80" 
@@ -363,7 +411,7 @@ export const EconomyPage: React.FC = () => {
                 </div>
             </div>
 
-             <div className="bg-emerald-50 p-6 border-b border-gray-200">
+             <div className="bg-emerald-50/80 p-6 border-b border-gray-200 backdrop-blur-sm">
                 <h4 className="text-xs font-bold text-emerald-800 uppercase mb-4 flex items-center">
                     <DollarSign className="w-3 h-3 mr-1" /> Калькулятор запуска
                 </h4>
@@ -389,6 +437,22 @@ export const EconomyPage: React.FC = () => {
                         colorClass="text-emerald-800"
                         icon={<Armchair className="w-3 h-3"/>}
                     />
+                    {/* НОВЫЕ ПОЛЯ */}
+                    <CalculatorInput 
+                        label="Аренда (Расходы)" 
+                        value={budgetRentPrice} 
+                        onChange={setBudgetRentPrice} 
+                        colorClass="text-emerald-800"
+                        icon={<Home className="w-3 h-3"/>}
+                    />
+                    <CalculatorInput 
+                        label="Сервис/Клининг" 
+                        value={budgetServiceCost} 
+                        onChange={setBudgetServiceCost} 
+                        colorClass="text-emerald-800"
+                        icon={<Activity className="w-3 h-3"/>}
+                    />
+
                      <div className="flex flex-col justify-end mb-3">
                          <div className="text-xs text-gray-500 mb-1">Total Capex</div>
                          <div className="text-lg font-bold text-red-600 font-mono">-{fmt(budgInvest)} ₽</div>
@@ -396,11 +460,11 @@ export const EconomyPage: React.FC = () => {
                 </div>
             </div>
 
-            <div className="divide-y divide-gray-100">
+            <div className="divide-y divide-gray-100 bg-white/80 backdrop-blur-sm">
                <AccordionItem title="Детализация расходов" cost={`${fmt(budgFixed)} ₽ (Mkt)`}>
                  <p className="text-sm text-gray-500">Маркетинг старта, Hostelworld, Agoda листинги.</p>
               </AccordionItem>
-              <div className="p-4 bg-gray-50">
+              <div className="p-4 bg-gray-50/90">
                 <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Операционные показатели</h4>
                 <div className="flex justify-between text-sm mb-1">
                   <span className="text-gray-600">Выручка (Nishinari)</span>
@@ -417,7 +481,6 @@ export const EconomyPage: React.FC = () => {
               </div>
             </div>
           </div>
-
           {/* 4. Event Model (Interactive) */}
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col">
             <div className="relative h-48">
