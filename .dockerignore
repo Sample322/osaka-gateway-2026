@@ -5,8 +5,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Production build
-dist
+# Production build (НЕ включаем dist в .dockerignore, т.к. создается при сборке)
 dist-ssr
 *.local
 
@@ -32,9 +31,9 @@ coverage
 .github
 .gitlab-ci.yml
 
-# Документация (опционально)
-README.md
-*.md
+# Документация (опционально можно оставить для справки)
+# README.md
+# *.md
 
 # Environment files
 .env
@@ -44,3 +43,7 @@ README.md
 # Logs
 logs
 *.log
+
+# Docker
+Dockerfile.old
+docker-compose.yml
