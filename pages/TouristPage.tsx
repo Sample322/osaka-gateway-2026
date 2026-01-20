@@ -2,6 +2,8 @@ import React from 'react';
 import { ContactForm } from '../components/ContactForm';
 import { Car, Home, Map, Smile } from 'lucide-react';
 import naradeerImg from '../assets/images/naradeer.jpg'
+import castleImg from '../assets/images/castleHero.jpg'
+import osakaCastle from '../assets/images/osakaCastle.jpg'
 export const TouristPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-zen-paper text-zen-ink font-sans pt-16">
@@ -10,7 +12,7 @@ export const TouristPage: React.FC = () => {
       <div className="relative h-[80vh] w-full overflow-hidden flex items-center justify-center">
         {/* Visual Prompt: Osaka Castle in spring with cherry blossoms, soft sunlight, high resolution */}
         <img 
-          src="https://lh3.googleusercontent.com/rd-gg/AIJ2gl_3oYi_F83FviUr-_wQavMRLeQ0uD-JdJqHXYyfksBY82pCr86bXv84sn_-BENVDRKEoCo5hEBZE2GHECO2rtAoNzUrlQadmDeYKf7N_KInBFTMF97f1CiQZnrNULQU5ZVeh9xTJYqqkWUCyQerU3RK33MrXi6QtavxnX3cvAM7bVtz_3aN8TB0ehZ9K3x_uId9grfCE-NCJYu2Q_bO_OPHT6J17tTfgtl100szQ4Uq0HvtcCGaGarv7X5JQpA8SGwXWIGe3Xvc-b-irAoMxB9zjbBpp118PoSDSQXn6NDj5xdj5f5b1O2yB9Ci9oU0wEgvrPwyivjQH9pdMFdv9KQwBVBD0W7fs_9xhR4M1qTL8f1KT8I6P3Q6yoLk09vgaghgAKB7StJZYbNKA9yTOT97wYe888O3pywn68dwzutvOfQK3UY7d6AzQgE2ly2OcJUsOMRHLKwZd3I9iaPjpRSMCFqVwmisTEUh4PXCijePes-GfrSdM4vllW2T0lFxI8unP68u1z2iCCkDOzsrjO4gPYEy5T5nxXhhs7Q8cWHWzeEYWVWS9jDn3nJewnFkkaLhdBTB-rE1X3RwL_4vPHOdtRrxhRt-rnN_SJ1LNwLSgdlcKMloZFJ-saLXIqeoGrBfrPtGgFM7p8UUUVx2_TAhXsdbCYHxeS1kdSRZtzMnYFbWygDGwOC12cbtnPrDQenSb2uzRjGBhwa4R8ATbA2KMF_3h_ziDGtiDgDzmuT1fcS7flupxJS0cEy78WZgcibMPP6Gplfd7rTbI4EkHV-eTyFemlJxgq--Pmz_Q2xwXOZ0pGnk1xmLxWPdFmmznyCh48NIQ5Va7PCoCFYrzMi7XOX5VvRbtmULxqR4FDUVpU5w9zueSxOMMGE9oNINVUB3z8sClFV-fySwPFg057QCzSOYQT3pDv2frfelU9RbGg9A-hYDSUwfsjS8OCp0L-hbMKPx0rNvm8_byt-1VHW7m4diRkyQCU3b0cSrxMme3s44Nit930DLIVDmt-m8BSMzHfbgerFraIsrsoZCVjG3FdbvLXuQhzVNG_Jmg4485ziLHPWzQW1wUGVhawPuFNrl3bDkCw22uiKVpCC4-CpB0iFrO70lQv9xhbQ6I0FAd8iUMu3b-_r-CROiwzE9z7Svs8MKqVEPC67R5L0DtqRvLIXIE-1gXzl0w1Osj568Q_i0t-R2T-thIpgGrlyidkoYwMRPaP4gTmpd4fQ6IExd3p4EV5XzvyjBWDkFma2B-WYNAeJFIicWprB8eOSd5Y5mZ-mMC5I5pU7IORrk42mOm0sc-3fVPQX6G3zMUC4BCCzUajX6os4zp_wWQhEGlJjryLfc7TuoDkjTTH6Sk4WkZVSzwboWZn85EGvOgVjoP1LAYn4zf2nEIMfJuTI0e_lWs23eSwyBW4pBfIYbBV-ruv24esf6YhfMg49dpB62Ov9cc1GX9VU0wv_g6n8=s1024-rj" 
+          src={castleImg}
           alt="Osaka Castle surrounded by nature, calm and majestic" 
           referrerPolicy="no-referrer"
           className="absolute inset-0 w-full h-full object-cover z-0 filter brightness-75 opacity-90"
@@ -131,7 +133,7 @@ export const TouristPage: React.FC = () => {
                 <div className="overflow-hidden rounded-sm mb-6 aspect-[4/5] shadow-md">
                    {/* Visual Prompt: Osaka Castle main keep, majestic architecture */}
                    <img 
-                    src="https://lh3.googleusercontent.com/rd-gg/AIJ2gl9LmmSEbRMaQaAciKok9wl3uMs4fh91qgMlfJG3zYMNJQ3wKHADuCSOj4R9PUpcWbQ9xgvQkEYZty_8OkvOXPzSzKQ6LP9vmZjUap8bDHe4Ruk_GJMXZHRkrfpltTeNwuE-1C3NSQALOCWIlFjEJpuEVSiNMFCvsJlA-Gh0Q2_bSJH6xTJQzTud4NczU2CmgJ11JuNexpUbHRnt6ZupCR26dakrHmMVKwl6-MDngx_odwqRkfj0QLxxftOTdgHbxcTvzUhWo3rQKy5wzvigOayvVm7_sVouwYfwve_0SvoK_-UwLkSv-O417SxjR8hqrhGGnpnag6OUDt5VUZazb-7p5KVNGIckxOqAg2taxqfvUmZuP1FPLk0n3rzcT5otZKAUnWU82ayGVbOHasc1N61ul2K-UBfkc17GYyQ19wHYGQUJEfskcQ3SAeCKm_LePwZZcC2t1djdpjIzQZIVUOmbyVRC9ctYQXPdICCjbikjOtxcetWjnFIDNYPrIB82SHjTi33fCXW1-Vbmf_UuJIloludA3YoJAeTjoInDFvCkrlLqW7Gvho9jGLQCW7PHYCUeBv8BdBIfmxUgdUxq0jL5fhH6YcdaDFxBmoapEl-GC8vACRtpwNBThzpb3zme1hAqExdDGwQJNAIjZHgF7kxUKpVgYyGGO_vKkJUd2lDrM-hC7C9Pp0MR8xO5kos-afLFmFCghBM3komRQmwpV1ChBsPGqPVGgZ6ILHWO5du9LaslJELoO43LECiMWiwLZDNCJM2VUuaT2wFFZRs4MajcjB6_AL5IJI7bkRjlQcFIE0lbWASJm1PUVyCDVg6SYlQ1uOVMQKLalda5j3iarx8RCKGQI2GSG3-jAYEgGXLZmxhcZYUqg3tliPfWw7kPmTt7XE1YqYxaDDl4PUkcbWuSJjmWVbk2OHOnTJszSolFeSuOvYyEqdVfyVZLkSks7Qe2Dny0xqWZYwmbEp6kzoNueWdmS0_nlFt7xFUeYLjJ5MAsFBpIpJlttRGno3pH0toq_r1toLEUZx2pvmq6cQqjNE5REynszwkw-mzcGK3IrUkLuVjI5p1BkTS-HRs4R09-5fyfM1dqZ0SebobyTlGHdbAAIIhq5g5KyZP63eaztYz4bRzEfx7A7g8_cW2WlC5vQwj3TWwSLbIxa6R54Z2Cndc81i8p9cq7Ndf9VtzpHMBWeY62yxVt8LLe0yQBrhxVom1VIFezPjjPkx-WwIyIVVSX5FjRfSNpO4Vnl2Ujgth7Y5GWspvpdYK2XVPch-CVeDxUVaF7WFqIrnjX1vSmsDXS5A-mkPkCsX1FyGt_dPxxxrboN3CbZFoaKq2M6rTekT_byuS12lx1_iZr_4EqesdhTAEDscr6SwNUyE_vMGUwWuEy1oEg7xhwh0sRWuVqZQpP4QX_f9ibSny7g3Lz9nrN8dxawZSqQqTTmXVwfuU518c07t910M78zAs=s1024-rj" 
+                    src={osakaCastle}
                     alt="Osaka Castle" 
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 

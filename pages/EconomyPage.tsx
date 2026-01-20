@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ChevronDown, TrendingUp, PieChart, Activity, Users, Ticket, Home, Building, Hammer, Armchair, DollarSign } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
+import eventModel from '../assets/images/eventModel.jpg'
 const AccordionItem: React.FC<{ title: string; cost?: string; children: React.ReactNode }> = ({ title, cost, children }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -485,7 +485,7 @@ export const EconomyPage: React.FC = () => {
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col">
             <div className="relative h-48">
                 <img 
-                    src="https://images.unsplash.com/photo-1528360983277-13d9b152c56e?auto=format&fit=crop&w=2071&q=80" 
+                    src={eventModel} 
                     alt="Tourists in Japan" 
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover" 
